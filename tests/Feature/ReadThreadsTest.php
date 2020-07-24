@@ -44,4 +44,20 @@ class ThreadsTest extends TestCase
         ->assertSee($reply->body);
 
     }
+      /** @test */
+      public function it_has_an_owner()
+      {
+          $reply = factory('App\Reply')
+          ->create();
+  
+          $this->assertInstanceOf('App\User',$reply->owner);
+  
+      }
+       /** @test */
+      public function a_thread_has_creator()
+      {
+        $thread = factory('App\Thread')
+        ->create();
+        $this->assertInstanceOf('App\User',$thread->creator);
+      }
 }
