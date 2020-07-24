@@ -60,4 +60,16 @@ class ThreadsTest extends TestCase
         ->create();
         $this->assertInstanceOf('App\User',$thread->creator);
       }
+      /** @test */
+      public function a_thread_can_add_a_reply()
+      {
+        $thread = factory('App\Thread')
+        ->create();
+        $thread->addReply([
+            'body' => 'foobar',
+            'user_id' => 1
+        ]);
+        $this->assertCount(1,$thread->replies);
+      }
+    
 }
