@@ -39,6 +39,20 @@
                     @endforeach
                 </div>
             </div>
+
+            @auth
+                
+            <div class="row">
+                <div class="col-12 col-md-offset-2 mt-2">
+                <form action="{{ $thread->path() . '/replies'}}">
+                    <div class="form-group">
+                        <textarea name="body" id="body" rows="5" class="form-control" placeholder="have something to say?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </form>
+                </div>
+            </div>
+            @endauth
         </div>
     </div>
 </div>
