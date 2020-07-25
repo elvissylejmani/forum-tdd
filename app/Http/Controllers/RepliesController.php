@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Thread;
+use Illuminate\Support\Facades\Auth;
 
 class RepliesController extends Controller
 {
@@ -15,10 +16,10 @@ class RepliesController extends Controller
 
     public function store(Thread $thread)
     {
-        $thread->addReply(request([
-            'body' => request('body'),
-            'user_id' => auth()->id()
-        ]));
+        $thread->addReply([
+            'user_id' => Auth::id(),
+            'body' => request('body')
+        ]);
         return back();
     }
 }

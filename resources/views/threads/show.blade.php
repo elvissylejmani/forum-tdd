@@ -44,7 +44,8 @@
                 
             <div class="row">
                 <div class="col-12 col-md-offset-2 mt-2">
-                <form action="{{ $thread->path() . '/replies'}}">
+                <form action="{{ $thread->path() . '/replies'}}" method="POST">
+                    @csrf
                     <div class="form-group">
                         <textarea name="body" id="body" rows="5" class="form-control" placeholder="have something to say?"></textarea>
                     </div>
@@ -53,6 +54,12 @@
                 </div>
             </div>
             @endauth
+
+            @guest
+            <div class="text-center">
+        <p>Please <a href="{{ route('login')}}"> sign in </a> to participate in this discussion.</p>
+    </div>
+            @endguest
         </div>
     </div>
 </div>
