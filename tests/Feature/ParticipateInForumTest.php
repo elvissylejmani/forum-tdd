@@ -8,7 +8,7 @@ use Tests\TestCase;
 
 class ParticipateInForum extends TestCase
 {
-    use RefreshDatabase;
+    use WithFaker, RefreshDatabase;
     /** @test */
     // public function an_authenticated_user_may_participate_in_forum_threads()
     // {

@@ -8,12 +8,16 @@ use Tests\TestCase;
 
 class CreateThreadsTest extends TestCase
 {
-    use RefreshDatabase;
+    use WithFaker, RefreshDatabase;
 
     /** @test */
     public function guests_may_not_create_threads()
     {
-        $this->exceptException;
+        // $this->expectException('Illuminate\Auth\AuthenticationException');
+
+        $thread = create('App\Thread');
+
+        $this->post('/threads',$thread->toArray());
     }
 
 
@@ -21,9 +25,9 @@ class CreateThreadsTest extends TestCase
     /** @test */
     public function an_authenticated_user_can_create_new_forum_threads()
     {
-        $this->actingAs(factory('App\User')->create());
+        $this->signIn();
         
-        $thread = factory('App\Thread')->make();
+        $thread = factory('App\Thread')->create();
 
         $this->post('/threads',$thread->toArray());
 

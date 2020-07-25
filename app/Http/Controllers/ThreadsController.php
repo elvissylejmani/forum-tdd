@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class ThreadsController extends Controller
 {
-    public function __constroct()
+    public function __construct() 
     {
         $this->middleware('auth')->only('store');
     }
