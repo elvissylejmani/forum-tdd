@@ -1,4 +1,4 @@
-new<?php
+<?php
 
 use Illuminate\Support\Facades\Route;
 
@@ -18,10 +18,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/threads','ThreadsController@index');
-Route::get('/threads/{thread}','ThreadsController@show');
- teRoute::get('/threads/create','ThreadsController@create');
-Route::post('/threads','ThreadsController@store');
+
 Route::resource('threads', 'ThreadsController');
 Route::post('/threads/{thread}/replies','RepliesController@store');
 Auth::routes();
