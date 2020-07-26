@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('threads.create', function ($view) {
+            $view->with('channels',\App\Channel::all());
+        });
+            
     }
 }
