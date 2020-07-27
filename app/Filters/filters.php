@@ -8,6 +8,8 @@ abstract class Filters{
 
     protected $request;
     protected $builder;
+    protected $filters = ['by'];
+
 
     public function __construct(Request $request)
     {
@@ -17,13 +19,22 @@ abstract class Filters{
     public function apply($builder)
     {
         $this->builder = $builder;
-        if($this->builder->by)
-        {
-        return $this->by($this->request->by);
+        
+        foreach ($this->getFilters() as $filter => $value) {
+            if ( method_exists($this,$filter)) {
+                $this->$filter($value);
+            }
+            $this->$filter($this->request->$filter);
         }
 
         return $builder;
         
     }
+    public function getFilters()
+    {
+        $filters = array_intersect(array_keys($this->request->all()), $this->filters);
+        return $this->request->only($filters);
+    }
+   
 
 }

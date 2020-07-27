@@ -1,12 +1,9 @@
-
+<div class="card my-2">
 <div class="panel panel-default">
-<div class="panel-heading">
+<div class="card-header">
     <a href="#">{{$repy->owner->name}}</a>  {{$repy->created_at->diffForHumans()}}...</div>
 </div>
-        <div class="body">
-<article>
-    
-    <div class="body">{{$repy->body}}</div>
+<article>    
+    <div class="card-body">{{$repy->body}}</div>
 </article>
-<hr>
 </div>
