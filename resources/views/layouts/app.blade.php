@@ -33,14 +33,24 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a href="/threads" class="nav-link">All Threads</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Browse
+                              </a>
+                              <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <li class="nav-item dropdown-item"><a href="/threads" class="nav-link">All Threads</a></li>
+                            @auth
+                            <li class="nav-item dropdown-item"><a href="/threads?by={{auth()->user()->name }}" class="nav-link">My Threads</a></li>
+                            @endauth
+                              </ul>
+                          </li>
                         <li class="nav-item"><a href="/threads/create" class="nav-link">New Thread</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               Channels
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              @foreach (App\Channel::all() as $channel)
+                              @foreach ($channels as $channel)
                                   
                               <a class="dropdown-item" href="/threads/{{$channel->slug}}">{{$channel->name}}</a>
                               @endforeach

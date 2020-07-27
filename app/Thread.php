@@ -30,4 +30,8 @@ class Thread extends Model
     {
         return $this->belongsTo(Channel::class);
     }
+    public function scopeFilter($qurey, $filters)
+    {
+        return $filters->apply($qurey);
+    }
 }
