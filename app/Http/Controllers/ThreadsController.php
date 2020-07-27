@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Thread;
 use App\User;
+use Illuminate\Support\Str;
 use App\Channel;
 use App\Filters\ThreadFilters;
 use Illuminate\Http\Request;
@@ -24,15 +25,11 @@ class ThreadsController extends Controller
      */
     public function index(Channel $channel, ThreadFilters $filters)
     {
+        $threads = Thread::latest()->filter($filters);
         if ($channel->exists) {
-            $threads = $channel->threads()->latest();
+            $threads->where('channel_id',$channel->id);
         }
-        else {
-            $threads = Thread::latest();
-        }
-
-
-        $threads = Thread::filter($filters)->get();
+        $threads = $threads->get();
 
         return view('threads.index',compact('threads'));
     }
@@ -78,7 +75,9 @@ class ThreadsController extends Controller
      */
     public function show($channelId,Thread $thread)
     {
-        return view('threads.show',compact('thread'));
+        $replies = $thread->replies()->paginate(20);
+        $str = str::plural('comment',$thread->replies_count);
+        return view('threads.show',compact('thread','str','replies'));
     }
 
     /**
@@ -114,14 +113,5 @@ class ThreadsController extends Controller
     {
         //
     }
-    protected function getThreads($channel)
-    {
-      
 
-        if ($username = request('by')) {
-            $userid = User::where('name',$username)->get();
-            $threads->where('user_id',$userid[0]->id);
-        }
-        return $threads = $threads->get();
-    }
 }
