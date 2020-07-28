@@ -31,6 +31,7 @@ class ThreadsController extends Controller
         }
         $threads = $threads->get();
 
+
         return view('threads.index',compact('threads'));
     }
 

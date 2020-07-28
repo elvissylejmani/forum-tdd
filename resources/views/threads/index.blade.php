@@ -8,16 +8,17 @@
                 <div class="card-header">{{ __('Forum') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                 
                         @foreach ($threads as $thread)
                             <article>
-                            <h1><a href="{{$thread->path()}}"> {{$thread->title}} </a></h1>
-                            <div class="body">{{$thread->body}}</div>
-                            </article>
+                                <div class="level">
+                            <h4 class="flex"><a href="{{$thread->path()}}"> {{$thread->title}} </a></h4>
+                            
+                            <a href="{{$thread->path()}}">{{$thread->replies_count}} Replies</a>
+                        </div>    
+                        <div class="body">{{$thread->body}}</div>
+                        </article>
+
                             <hr>
                         @endforeach
                 </div>
