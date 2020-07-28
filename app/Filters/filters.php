@@ -8,7 +8,7 @@ abstract class Filters{
 
     protected $request;
     protected $builder;
-    protected $filters = ['by'];
+    protected $filters = ['by','popular'];
 
 
     public function __construct(Request $request)
