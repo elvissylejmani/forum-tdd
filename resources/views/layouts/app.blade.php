@@ -24,6 +24,7 @@
             display: flex; align-items: center;
         }
         .flex{ flex: 1;}
+        
     </style>
 </head>
 <body style="padding-button: 100px">
