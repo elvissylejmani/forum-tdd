@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Reply extends Model
 {
@@ -11,4 +12,10 @@ class Reply extends Model
     {
             return $this->belongsTo(User::class,'user_id');
     }
+
+    public function favorites()
+    {
+        return $this->MorphMany(Favorite::class,'favorited');
+    }
+
 }

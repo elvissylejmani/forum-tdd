@@ -4,17 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Reply;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
+use App\Favorite;
 class FavoriteController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     public function store(Reply $reply)
     {
-    return DB::table('favorites')->insert([
+    Favorites::create([
             'user_id' => auth()->user()->id,
-            'favorite_id' => $reply->id,
+            'favorited_id' => $reply->id,
             'favorite_type' => get_class($reply)
         ]);
     }
