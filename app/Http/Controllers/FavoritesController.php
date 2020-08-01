@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Reply;
 use Illuminate\Http\Request;
 use App\Favorite;
-class FavoriteController extends Controller
+class FavoritesController extends Controller
 {
 
     public function __construct()
