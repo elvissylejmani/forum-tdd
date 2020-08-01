@@ -6,9 +6,9 @@
 
       <h5 class="flex">  <a href="#"> {{$reply->owner->name}}</a>  {{$reply->created_at->diffForHumans()}}... </h5>
    <div >
-       <form method="POST" action="/replies/{{$reply}}/favorites">
+       <form method="POST" action="/replies/{{$reply->id}}/favorites">
         @csrf
-           <button type="submit" class="btn btn-success">{{$reply->favorites()->count()}}</button>
+           <button type="submit" class="btn btn-success" {{$reply->isFavorited() ? 'disabled' : ''}}>{{$reply->favorites()->count()}} Favorited</button>
        </form>
    </div>
 </div>
