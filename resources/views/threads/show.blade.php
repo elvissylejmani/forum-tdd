@@ -18,7 +18,7 @@
                 </div>
             </div>
               
-            @foreach ($replies as $repy)
+            @foreach ($replies as $reply)
                         
             @include('threads.reply')
           
