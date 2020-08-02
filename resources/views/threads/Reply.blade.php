@@ -8,7 +8,7 @@
    <div >
        <form method="POST" action="/replies/{{$reply->id}}/favorites">
         @csrf
-           <button type="submit" class="btn btn-success" {{$reply->isFavorited() ? 'disabled' : ''}}>{{$reply->favorites()->count()}} Favorited</button>
+           <button type="submit" class="btn btn-success" @auth(){{$reply->isFavorited() ? 'disabled' : ''}} @endauth>{{$reply->favorites_count ?? 0}} Favorited</button>
        </form>
    </div>
 </div>

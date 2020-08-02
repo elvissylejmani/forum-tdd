@@ -7,26 +7,16 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Reply extends Model
 {
+    use \App\Favoritable;
+
     protected $fillable = ['thread_id','user_id','body'];
+
+    protected $with = ['owner','favorites'];
+    
     public function owner()
     {
             return $this->belongsTo(User::class,'user_id');
     }
 
-    public function favorites()
-    {
-        return $this->MorphMany(Favorite::class,'favorited');
-    }
-    public function favorite()
-    {
-        $attributes = ['user_id' => auth()->user()->id];
-        if (! $this->favorites()->where($attributes)->exists()) {
-            return $this->favorites()->create($attributes);
-        }
-    }
-
-    public function isFavorited()
-    {
-        return $this->favorites()->where('user_id',auth()->user()->id)->exists();
-    }
+   
 }
