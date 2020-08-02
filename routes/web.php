@@ -27,6 +27,8 @@ Route::get('/threads/{channel:slug}','ThreadsController@index');
 Route::get('/threads/{channel}/{thread}','ThreadsController@show'); 
 Route::post('threads', 'ThreadsController@store');
 Route::post('/replies/{reply}/favorites','FavoritesController@store');
+Route::get('/profile/{ProfileUser:name}','ProfilesController@show')->name('profile');
+
 
 Auth::routes();
 
