@@ -7,6 +7,8 @@ use phpDocumentor\Reflection\Types\This;
 
 class Thread extends Model
 {
+    use \App\RecordsActivity;
+
     protected $fillable = ['user_id','channel_id','title','body'];
     
     protected $with = ['creator','channel'];
@@ -22,14 +24,11 @@ class Thread extends Model
 
 
         static::created(function ($thread){
-            Activity::create([
-                'user_id' => auth()->id(),
-                'type' => 'created_thread',
-                'subject_id' => $thread->id,
-                'subject_type' => 'App\Thread'
-            ]);
+           $thread->recordActivity('created');
         });
+        
     }
+    
     public function path()
     {
         return '/threads/' . $this->channel->slug . '/' . $this->id;
