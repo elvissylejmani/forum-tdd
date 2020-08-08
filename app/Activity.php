@@ -9,8 +9,8 @@ class Activity extends Model
     protected $fillable = ['user_id','type','subject_id','subject_type'];
 
 
-    public function Subject()
+    public function subject()
     {
-        return $this->morphTo();
+        return $this->morphTo(); 
     }
 }
