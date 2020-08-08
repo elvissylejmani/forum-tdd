@@ -22,10 +22,8 @@ class Thread extends Model
             $builder->withCount('replies');
         });
 
-
-        static::created(function ($thread){
-           $thread->recordActivity('created');
-        });
+      
+      
         
     }
     
