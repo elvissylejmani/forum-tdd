@@ -19,7 +19,7 @@ trait RecordsActivity{
 
         protected static function getActivitiesToRecord()
         {
-            return ['created','deleted'];
+            return ['created'];
         }
 
     protected function recordActivity($event)
@@ -27,6 +27,7 @@ trait RecordsActivity{
             $this->Activity()->create([
                 'user_id' => auth()->id(),
                 'type' => $this->getActivityType($event),
+                'subject_type' => get_class($this)
             ]);
             // Activity::create([
               
@@ -34,7 +35,7 @@ trait RecordsActivity{
             //     'subject_type' => get_class($this)
             // ]);
         }
-        public function Activity()
+        public function activity()
         {
             return $this->MorphMany(Activity::class,'subject');
         }
