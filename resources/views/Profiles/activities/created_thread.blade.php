@@ -1,14 +1,12 @@
-<div class="card mb-4">
-    <div class="card-header">
-        <div class="level">
-            <span class="flex">
-                {{$ProfileUser->name}} created a thread
-        </span>    
-        {{-- <span> {{$activity->created_at->diffForHumans()}}</span> --}}
-        </div> 
-        </div>
+@component('profiles.activities.activity')
 
-    <div class="card-body">
-              {{$activity->subject->body}}
-    </div>
-</div>
+    @slot('heading')
+    {{$ProfileUser->name}} created "<a href="{{$activity->subject->path()}}"> {{$activity->subject->title}} </a>"
+    @endslot
+
+    @slot('body')
+    {{$activity->subject->body}}
+    @endslot
+@endcomponent
+
+
