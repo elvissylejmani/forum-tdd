@@ -120,7 +120,7 @@ class ThreadsController extends Controller
         // return redirect('/login');
         // }
 
-        $thread->replies()->delete();
+        // $thread->replies()->delete();
         $thread->delete();
 
         if (request()->wantsJson()) {
