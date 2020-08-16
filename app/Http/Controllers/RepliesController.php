@@ -23,6 +23,6 @@ class RepliesController extends Controller
             'user_id' => Auth::id(),
             'body' => request('body')
         ]);
-        return back();
+        return back()->with('flash','Your replie has been left.');
     }
 }
