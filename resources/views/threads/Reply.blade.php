@@ -1,3 +1,6 @@
+<reply inline-template>
+
+
 <div id="reply-{{$reply->id}}" class="card my-2">
 <div class="panel panel-default">
 <div class="card-header">
@@ -14,10 +17,14 @@
 </div>
 </div>
 </div>
-
-<div class="card-body">{{$reply->body}}</div>
+<div class="" v-if="editing">
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+</div>
+<div class="card-body" v-else>{{$reply->body}}</div>
 @can('update', $reply)
-<div class="card-footer">
+<div class="card-footer level">
+    
+    <button class="btn btn-xs mr-1" @click ="editing = !editing">Edit</button>
     <form method="POST" action="/replies/{{$reply->id}}">
         @csrf
         @method('DELETE')
@@ -28,3 +35,4 @@
 </div>
 @endcan
 </div>
+</reply> 
